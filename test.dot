@@ -1,0 +1,14 @@
+digraph G {
+  node0x7fa9d0400b50[label="B"];
+  node0x7fa9d0400b52[label="B"];
+  node3;
+  node4[label="two\nlines"];
+
+  node1 -> node2 [label="edge_1_2"];
+  node1 -> node3 [label="edge_1_3"];
+  node2 -> node3 [label="edge_2_3"];
+  node3 -> node1 [label="edge_3_1"];
+  B -> A [label="new"];
+  A;
+
+}
