@@ -56,6 +56,19 @@ typedef struct _myArgs {
   FILE* fp;
 } myArgs;
 
+typedef struct _myOption {
+  int print_order;
+  int do_subst;
+  char* sub_match;
+  char* sub_replace;
+  int do_remove;
+  char* rm_match;
+  int is_unique;
+  int is_verbose;
+  int is_subst_first;
+  int is_help;
+} myOption;
+
 BinSTreeNode* createNode(const char *);
 void addNode(BinSTreeNode*, BinSTreeNode*);
 void setNodeAsLeft(BinSTreeNode*, BinSTreeNode*);
@@ -89,5 +102,16 @@ void free_myArgs(myArgs*);
 void free_unsortedNodes(myArgs*);
 void createSBML(BinSTreeNode*);
 int visualizeGraph(BinSTreeNode*, const char*);
+int parseOption(int argc, char* argv[], myOption*);
+BinSTreeNode* readNode(FILE*, BinSTreeNode*);
+void chomp(char*);
+char* findSpace(char*);
+myOption* create_myOption(void);
+void free_myOption(myOption*);
+void free_myObjects(BinSTreeNode*, myOption*);
+void usage(char*);
+char* getFirstString(char*);
+char* getSecondString(char*);
+char* getStringBetweenSlash(char*, int);
 
 #endif

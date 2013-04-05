@@ -1,5 +1,5 @@
 /*
- * Last modified: Wed, 20 Mar 2013 23:38:04 +0900
+ * Last modified: Sat, 06 Apr 2013 03:42:27 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -17,4 +17,13 @@ void free_unsortedNodes(myArgs* args) {
   }
   */
   free(args->unsortedNodes);
+}
+
+void free_myObjects(BinSTreeNode* root, myOption* opt) {
+  if (root != NULL) {
+    clearBinSTree(root);
+  }
+  if (opt != NULL) {
+    free_myOption(opt);
+  }
 }
