@@ -1,0 +1,18 @@
+# Object files
+*.o
+
+# from MacOSX
+.DS_Store
+
+# GDB
+.gdb_history
+
+# Output files
+out.dot
+out.pdf
+out2.pdf
+
+# Binary files
+test
+pjt
+a.out
