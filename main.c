@@ -1,5 +1,5 @@
 /*
- * Last modified: Sat, 06 Apr 2013 04:01:54 +0900
+ * Last modified: Sat, 06 Apr 2013 06:07:12 +0900
  */
 #include <stdio.h>
 #include <unistd.h>
@@ -37,15 +37,31 @@ int main2(int argc, char* argv[])
       fclose(fp);
     }
   }
-  /* Here we go */
-  /*
-  debug_printTree(r, PREORDER);
-  print_test(r, ans1, ans2, ans3);
-  subst_test(r);
-  visualizeGraph(r, "out.pdf");
-  remove_test(r);
-  */
-  visualizeGraph(r, "out.pdf");
+  /* Here we go! */
+  if (opt->is_verbose) {
+    printTree(r, opt->print_order);
+    visualizeGraph(r, "start.pdf", opt);
+  }
+  /* SubstString and Remove */
+  if (opt->is_subst_first) {    /* do_subst == true && do_remove == true */
+    substString(r, opt->sub_match, opt->sub_replace);
+    opt->do_subst = false;
+    if (opt->is_verbose) printTree(r, opt->print_order);
+    removeNode(r, opt->rm_match, opt->rm_delall);
+    opt->do_remove = false;
+    if (opt->is_verbose) printTree(r, opt->print_order);
+  } else if (opt->do_remove) {
+    removeNode(r, opt->rm_match, opt->rm_delall);
+    opt->do_remove = false;
+    if (opt->is_verbose) printTree(r, opt->print_order);
+  } else if (opt->do_subst) {
+    substString(r, opt->sub_match, opt->sub_replace);
+    opt->do_subst = false;
+    if (opt->is_verbose) printTree(r, opt->print_order);
+  }
+  /* Print Tree */
+  printTree(r, opt->print_order);
+  visualizeGraph(r, "end.pdf", opt);
   free_myObjects(r, opt);
 
   return 0;

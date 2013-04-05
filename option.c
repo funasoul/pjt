@@ -1,11 +1,11 @@
 /*
- * Last modified: Sat, 06 Apr 2013 04:36:27 +0900
+ * Last modified: Sat, 06 Apr 2013 05:47:01 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
 
 int parseOption(int argc, char* argv[], myOption *opt) {
-  int tmp;
+  char* tmpstr;
   while (*argv != NULL && **argv == '-') {
     if (!mystrcmp(*argv, "-p")) {  /* print */
       argv++; argc--;
@@ -13,12 +13,11 @@ int parseOption(int argc, char* argv[], myOption *opt) {
         fprintf(stderr, "\"-p\" option requires 0, 1, or 2 as an argument.\n");
         return -1;
       } else {
-        tmp = atoi(*argv);
-        if (tmp < 0 || tmp > 2) {
+        if (!ismynumber(*argv) || atoi(*argv) < 0 || atoi(*argv) > 2) {
           fprintf(stderr, "\"-p\" option requires 0, 1, or 2 as an argument.\n");
           return -1;
         } else {
-          opt->print_order = tmp;
+          opt->print_order = atoi(*argv);
           argv++; argc--;
         }
       }
@@ -41,11 +40,19 @@ int parseOption(int argc, char* argv[], myOption *opt) {
         opt->is_subst_first = true;
       }
       opt->rm_match = getFirstString(*argv);
-      if (opt->rm_match != NULL) {
-        printf("-r [%s]\n", opt->rm_match);
+      tmpstr = getSecondString(*argv);
+      if (opt->rm_match != NULL && ismynumber(tmpstr)) {
+        if (atoi(tmpstr) == 0) {
+          opt->rm_delall = false;
+        } else {
+          opt->rm_delall = true;
+        }
+        free(tmpstr);
+        printf("-r [%s][%d]\n", opt->rm_match, opt->rm_delall);
         argv++; argc--;
       } else {
-        fprintf(stderr, "\"-r\" option requires \"/match/\" as an argument.\n");
+        free(tmpstr);
+        fprintf(stderr, "\"-r\" option requires \"/match/dellall_flag/\" as an argument.\n");
         return -1;
       }
     } else if (!mystrcmp(*argv, "-u")) { /* unique */
@@ -67,10 +74,9 @@ int parseOption(int argc, char* argv[], myOption *opt) {
 
 char* getStringBetweenSlash(char* str, int num) {
   int i;
-  int head, tail, count;
+  int head = -1, tail = -1, count = 0;
   char* rtn;
   if (str == NULL) return NULL;
-  count = 0;
   for (i = 0; i < mystrlen(str); i++) {
     if (str[i] == '/') {
       count++;
@@ -81,7 +87,7 @@ char* getStringBetweenSlash(char* str, int num) {
       }
     }
   }
-  if (tail - head == 1) return NULL;
+  if (tail - head == 1 || head == -1 || tail == -1) return NULL;
   rtn = (char*)malloc(sizeof(char)*(tail - head));
   for (i = 0; i < tail-head-1; i++) {
     rtn[i] = str[head+1+i];

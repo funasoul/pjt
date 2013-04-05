@@ -1,10 +1,10 @@
 /*
- * Last modified: Fri, 05 Apr 2013 02:38:10 +0900
+ * Last modified: Sat, 06 Apr 2013 05:15:56 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
 
-int visualizeGraph(BinSTreeNode* root, const char* file) {
+int visualizeGraph(BinSTreeNode* root, const char* file, myOption* opt) {
   myArgs args;
   FILE *fp;
   char command[256];
@@ -22,6 +22,8 @@ int visualizeGraph(BinSTreeNode* root, const char* file) {
 
   sprintf(command, "/opt/local/bin/dot -Tpdf out.dot -o %s && open %s", file, file);
   system(command);
-  printf("Visualize graph in %s\n", file);
+  if (opt->is_verbose) {
+    printf("Visualize graph in %s\n", file);
+  }
   return true;
 }

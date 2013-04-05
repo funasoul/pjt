@@ -20,7 +20,7 @@ GREEN	mycommon.h	/^#define GREEN /;"	d
 INORDER	mycommon.h	/^#define INORDER /;"	d
 LDFLAGS	Makefile	/^LDFLAGS = -lm$/;"	m
 MAGENTA	mycommon.h	/^#define MAGENTA /;"	d
-OBJSCOMMON	Makefile	/^OBJSCOMMON  = usage.o myOption.o findSpace.o chomp.o readNode.o option.o visualizeGraph.o myArgs.o myfree.o sortTree.o removeNode.o substString.o isChild.o isLeft.o getNodeNum.o checkSorted.o clearBinSTree.o doNode.o searchNode.o traverseTree.o printTree.o deleteNode.o setNode.o addNode.o createNode.o mystrcmp.o mystrcpy.o mystrlen.o mystrncmp.o mystrsubst.o$/;"	m
+OBJSCOMMON	Makefile	/^OBJSCOMMON  = ismynumber.o usage.o myOption.o findSpace.o chomp.o readNode.o option.o visualizeGraph.o myArgs.o myfree.o sortTree.o removeNode.o substString.o isChild.o isLeft.o getNodeNum.o checkSorted.o clearBinSTree.o doNode.o searchNode.o traverseTree.o printTree.o deleteNode.o setNode.o addNode.o createNode.o mystrcmp.o mystrcpy.o mystrlen.o mystrncmp.o mystrsubst.o$/;"	m
 OBJSM	Makefile	/^OBJSM = $(OBJSCOMMON) main.o$/;"	m
 OBJST	Makefile	/^OBJST = $(OBJSCOMMON) test.o$/;"	m
 POSTORDER	mycommon.h	/^#define POSTORDER /;"	d
@@ -79,6 +79,7 @@ is_help	mycommon.h	/^  int is_help;$/;"	m	struct:_myOption
 is_subst_first	mycommon.h	/^  int is_subst_first;$/;"	m	struct:_myOption
 is_unique	mycommon.h	/^  int is_unique;$/;"	m	struct:_myOption
 is_verbose	mycommon.h	/^  int is_verbose;$/;"	m	struct:_myOption
+ismynumber	ismynumber.c	/^int ismynumber(char* s) {$/;"	f
 left	mycommon.h	/^  struct _BinSTreeNode* left;$/;"	m	struct:_BinSTreeNode	typeref:struct:_BinSTreeNode::_BinSTreeNode
 main	main.c	/^int main(int argc, char** argv)$/;"	f
 main	test-strncmp.c	/^int main(int argc, char* argv[])$/;"	f
@@ -127,4 +128,4 @@ unlinkParent	setNode.c	/^void unlinkParent(BinSTreeNode *node) {$/;"	f
 unsort_len	mycommon.h	/^  int unsort_len;$/;"	m	struct:_myArgs
 unsortedNodes	mycommon.h	/^  BinSTreeNode** unsortedNodes;$/;"	m	struct:_myArgs
 usage	usage.c	/^void usage(char *myname) {$/;"	f
-visualizeGraph	visualizeGraph.c	/^int visualizeGraph(BinSTreeNode* root, const char* file) {$/;"	f
+visualizeGraph	visualizeGraph.c	/^int visualizeGraph(BinSTreeNode* root, const char* file, myOption* opt) {$/;"	f

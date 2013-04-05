@@ -63,6 +63,7 @@ typedef struct _myOption {
   char* sub_replace;
   int do_remove;
   char* rm_match;
+  int rm_delall;
   int is_unique;
   int is_verbose;
   int is_subst_first;
@@ -101,7 +102,7 @@ myArgs* create_myArgs_forCheck(BinSTreeNode*);
 void free_myArgs(myArgs*);
 void free_unsortedNodes(myArgs*);
 void createSBML(BinSTreeNode*);
-int visualizeGraph(BinSTreeNode*, const char*);
+int visualizeGraph(BinSTreeNode*, const char*, myOption*);
 int parseOption(int argc, char* argv[], myOption*);
 BinSTreeNode* readNode(FILE*, BinSTreeNode*);
 void chomp(char*);
@@ -113,5 +114,6 @@ void usage(char*);
 char* getFirstString(char*);
 char* getSecondString(char*);
 char* getStringBetweenSlash(char*, int);
+int ismynumber(char*);
 
 #endif

@@ -1,5 +1,5 @@
 /*
- * Last modified: Sat, 06 Apr 2013 02:49:46 +0900
+ * Last modified: Sat, 06 Apr 2013 05:30:34 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -12,9 +12,11 @@ myOption* create_myOption(void) {
   opt->sub_replace = NULL;
   opt->do_remove = false;
   opt->rm_match = NULL;
+  opt->rm_delall = false;
   opt->is_unique = false;
   opt->is_verbose = false;
   opt->is_subst_first = false;
+  opt->is_help = false;
   return opt;
 }
 
