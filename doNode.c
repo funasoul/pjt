@@ -1,5 +1,5 @@
 /*
- * Last modified: Fri, 05 Apr 2013 09:19:13 +0900
+ * Last modified: Sat, 06 Apr 2013 06:42:49 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -61,6 +61,11 @@ void doNode(BinSTreeNode* node, myArgs *args) {
       free(s);
     }
   } else if (args->action == REMOVE_MATCH) {
+    /* 
+     * This logic is confirmed to be correct, and it should be applied to the
+     * code in sortBinSTree(). Whenever I change this part, I should have to
+     * look into sortBinSTree(), and modify that part also.
+     */
     if (!mystrcmp(args->str, node->str)) {  /* If matched */
       if (args->delall || args->num_removed == 0) { /* remove node */
         parent = node->parent;
