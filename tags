@@ -98,6 +98,7 @@ str	mycommon.h	/^  const char* str;$/;"	m	struct:_myArgs
 substString	substString.c	/^int substString(BinSTreeNode *root, const char* str, const char* rstr) {$/;"	f
 subst_test	test.c	/^void subst_test(BinSTreeNode* r) {$/;"	f
 true	mycommon.h	/^#define true /;"	d
+unlinkParent	setNode.c	/^void unlinkParent(BinSTreeNode *node) {$/;"	f
 unsort_len	mycommon.h	/^  int unsort_len;$/;"	m	struct:_myArgs
 unsortedNodes	mycommon.h	/^  BinSTreeNode** unsortedNodes;$/;"	m	struct:_myArgs
 visualizeGraph	visualizeGraph.c	/^int visualizeGraph(BinSTreeNode* root, const char* file) {$/;"	f

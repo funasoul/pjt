@@ -1,18 +1,18 @@
 /*
- * Last modified: Fri, 05 Apr 2013 02:38:41 +0900
+ * Last modified: Fri, 05 Apr 2013 09:03:19 +0900
  */
 #include <stdio.h>
 #include <unistd.h>
 #include "mycommon.h"
 
-#define SIZE 10
+#define SIZE 15
 
 void remove_test(BinSTreeNode* r) {
   /* Remove */
-  removeNode(r, "B", true);
-  printTree(r, PREORDER);
-  printTree(r, INORDER);
-  /* debug_printTree(r, PREORDER); */
+  removeNode(r, "dog", true);
+  /* printTree(r, PREORDER); */
+  /* printTree(r, INORDER); */
+  debug_printTree(r, PREORDER);
   checkPrint(r);
   printf("Num = [%s%d%s]\n", CYAN, getNodeNum(r), DEFAULT);
 
@@ -52,7 +52,8 @@ int main2(int argc, char* argv[])
   char ans1[] = "F B A B D C E G I H";
   char ans2[] = "A B B C D E F G H I";
   char ans3[] = "B A C E D B H I G F";
-  char *tst[] = {"dog", "cat", "ponta", "banana", "baz", "cow", "blue", "foo", "mac", "air"};
+  /* char *tst[] = {"dog", "cat", "ponta", "banana", "baz", "cow", "blue", "foo", "mac", "air"}; */
+  char *tst[] = {"dog", "cat", "ponta", "banana", "baz", "cow", "cou", "cax", "caz", "dan", "da", "blue", "foo", "mac", "air"};
   /* char ans2[] = "akira banana blue cat cow dog donna fool ponta"; */
   BinSTreeNode* node[SIZE];
   BinSTreeNode *r;
@@ -64,10 +65,12 @@ int main2(int argc, char* argv[])
       addNode(r, node[i]);
     }
   }
+  debug_printTree(r, PREORDER);
   print_test(r, ans1, ans2, ans3);
   subst_test(r);
   visualizeGraph(r, "out.pdf");
   remove_test(r);
+  visualizeGraph(r, "out2.pdf");
   clearBinSTree(r);
 
   return 0;

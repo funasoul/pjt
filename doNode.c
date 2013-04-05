@@ -1,5 +1,5 @@
 /*
- * Last modified: Fri, 22 Mar 2013 05:03:06 +0900
+ * Last modified: Fri, 05 Apr 2013 09:19:13 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -18,11 +18,10 @@
 void doNode(BinSTreeNode* node, myArgs *args) {
   char* s;
   BinSTreeNode *child = NULL, *parent = NULL, *left = NULL, *right = NULL;
-  BinSTreeNode *min = NULL;
+  BinSTreeNode *min = NULL, *minRight = NULL;
   if (args->action == PRINT) {
     printf("%s ", node->str);
   } else if (args->action == GRAPH_PRINT) {
-    printf("GRAPH: %s\n", node->str);
     fprintf(args->fp, "  node%p[label=%s];\n", node, node->str);
     if (node->left != NULL) {
       fprintf(args->fp, "  node%p -> node%p;\n", node, node->left);
@@ -37,7 +36,7 @@ void doNode(BinSTreeNode* node, myArgs *args) {
       fprintf(args->fp, "  node%p -> null%p;\n", node, (node+102));
     }
   } else if (args->action == DEBUG_PRINT) {
-    printf("[%3s][%p][%p]\n", node->str, node, node->str);
+    printf("[%-10s][%p][%p][%p]:[%p]\n", node->str, node, node->left, node->right, node->str);
   } else if (args->action == REMOVE) {
     deleteNode(node);
   } else if (args->action == CHECK) {
@@ -63,29 +62,38 @@ void doNode(BinSTreeNode* node, myArgs *args) {
     }
   } else if (args->action == REMOVE_MATCH) {
     if (!mystrcmp(args->str, node->str)) {  /* If matched */
-      printf("Found [%s][%p][%p] <- [%s]\n", node->str, node->left, node->right, node->parent->str);
       if (args->delall || args->num_removed == 0) { /* remove node */
         parent = node->parent;
         left   = node->left;
         right  = node->right;
-        deleteNode(node);
-        if (node->left == NULL && node->right == NULL) {
-        } else if (node->left  == NULL) {  /* We only have right node */
+        if (parent == NULL) {  /* node is root node */
+          printf("Found [%s][%p][%p] (root node)\n", node->str, node->left, node->right);
+          parent = node;       /* set parent as "node" for addNode() */
+          free(node->str);
+          node->str = NULL;    /* just set nodeName as NULL */
+        } else {
+          printf("Found [%s][%p][%p] <- [%s]\n", node->str, node->left, node->right, node->parent->str);
+          deleteNode(node);
+        }
+        if (left == NULL && right == NULL) {
+        } else if (left  == NULL) {  /* We only have right node */
           child = right;
-        } else if (node->right == NULL) {  /* We only have left  node */
+        } else if (right == NULL) {  /* We only have left  node */
           child = left;
         } else {  /* We have both left and right nodes */
           /* Replace this node with Min node under right node */
           min = getMinNode(right);
+          minRight = min->right;
           /* printf("  Found Min [%s]\n", min->str); */
           /* printf("  Parent    [%s]\n", parent->str); */
-          setNodeAsLeft(min->parent, min->right); /* Min only have right node */
-          setNodeAsOrphan(min);
-          setNodeAsRight(min, right);
-          setNodeAsLeft(min, left);
+          unlinkParent(min);
+          setNodeAsLeft(min, left); /* Min only have right node */
+          if (min != right) {
+            addNode(min, right);
+          }
           child = min;
         }
-        /* No need to check NULL for left node (addNode() takes care of it) */
+        /* No need to check NULL for node (addNode() takes care of it) */
         addNode(parent, child);
         args->num_removed++;
       }

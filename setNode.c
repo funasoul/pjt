@@ -1,5 +1,5 @@
 /*
- * Last modified: Wed, 20 Mar 2013 01:27:49 +0900
+ * Last modified: Fri, 05 Apr 2013 08:00:21 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -16,13 +16,19 @@ void setNodeAsRight(BinSTreeNode *node, BinSTreeNode *right) {
   right->parent = node;
 }
 
-void setNodeAsOrphan(BinSTreeNode *node) {
+void unlinkParent(BinSTreeNode *node) {
   if (node == NULL) return;
-  node->left = NULL;
-  node->right = NULL;
   if (isLeftChild(node->parent, node)) {
     node->parent->left = NULL;
   } else if (isRightChild(node->parent, node)) {
     node->parent->right = NULL;
   }
+  node->parent = NULL;
+}
+
+void setNodeAsOrphan(BinSTreeNode *node) {
+  if (node == NULL) return;
+  unlinkParent(node);
+  node->left = NULL;
+  node->right = NULL;
 }

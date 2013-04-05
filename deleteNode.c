@@ -1,15 +1,13 @@
 /*
- * Last modified: Wed, 20 Mar 2013 20:51:08 +0900
+ * Last modified: Fri, 05 Apr 2013 08:05:38 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
 
 void deleteNode(BinSTreeNode* node) {
-  if (isLeftChild(node->parent, node)) {
-    node->parent->left = NULL;
-  } else if (isRightChild(node->parent, node)) {
-    node->parent->right = NULL;
-  }
+  unlinkParent(node);
+  unlinkParent(node->left);
+  unlinkParent(node->right);
   free(node->str);
   node->str = NULL;
   free(node);

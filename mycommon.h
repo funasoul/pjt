@@ -60,6 +60,7 @@ BinSTreeNode* createNode(const char *);
 void addNode(BinSTreeNode*, BinSTreeNode*);
 void setNodeAsLeft(BinSTreeNode*, BinSTreeNode*);
 void setNodeAsRight(BinSTreeNode*, BinSTreeNode*);
+void unlinkParent(BinSTreeNode*);
 void setNodeAsOrphan(BinSTreeNode*);
 void deleteNode(BinSTreeNode*);
 void printTree(BinSTreeNode*, int);
