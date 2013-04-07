@@ -1,5 +1,5 @@
 /*
- * Last modified: Sat, 06 Apr 2013 05:47:01 +0900
+ * Last modified: Sun, 07 Apr 2013 19:10:06 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -27,7 +27,7 @@ int parseOption(int argc, char* argv[], myOption *opt) {
       opt->sub_match = getFirstString(*argv);
       opt->sub_replace = getSecondString(*argv);
       if (opt->sub_match != NULL && opt->sub_replace != NULL) {
-        printf("-s [%s][%s]\n", opt->sub_match, opt->sub_replace);
+        if(DEBUG) printf("  -s [%s][%s]\n", opt->sub_match, opt->sub_replace);
         argv++; argc--;
       } else {
         fprintf(stderr, "\"-s\" option requires \"/match/replace/\" as an argument.\n");
@@ -48,7 +48,7 @@ int parseOption(int argc, char* argv[], myOption *opt) {
           opt->rm_delall = true;
         }
         free(tmpstr);
-        printf("-r [%s][%d]\n", opt->rm_match, opt->rm_delall);
+        if(DEBUG) printf("  -r [%s][%d]\n", opt->rm_match, opt->rm_delall);
         argv++; argc--;
       } else {
         free(tmpstr);

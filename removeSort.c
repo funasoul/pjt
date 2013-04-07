@@ -1,5 +1,5 @@
 /*
- * Last modified: Sun, 07 Apr 2013 17:23:04 +0900
+ * Last modified: Sun, 07 Apr 2013 19:11:33 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -11,12 +11,12 @@ void removeSort(BinSTreeNode* node) {
   left   = node->left;
   right  = node->right;
   if (parent == NULL) {  /* node is root node */
-    printf("Found [%s][%p][%p] (root node)\n", node->str, node->left, node->right);
+    if(DEBUG) printf("Remove [%s][%p][%p] (root node)\n", node->str, node->left, node->right);
     parent = node;       /* set parent as "node" for addNode() */
     free(node->str);
     node->str = NULL;    /* just set nodeName as NULL. addNode() will take care of it. */
   } else {
-    printf("Found [%s][%p][%p] <- [%s]\n", node->str, node->left, node->right, node->parent->str);
+    if(DEBUG) printf("Remove [%s][%p][%p] <- [%s]\n", node->str, node->left, node->right, node->parent->str);
     deleteNode(node);
   }
   if (left == NULL && right == NULL) {

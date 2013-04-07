@@ -1,5 +1,5 @@
 /*
- * Last modified: Sun, 07 Apr 2013 12:23:33 +0900
+ * Last modified: Sun, 07 Apr 2013 19:07:43 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -20,14 +20,14 @@ void addNode(BinSTreeNode *rootNode, BinSTreeNode *node) {
     if (isLeft(rootNode, node)) {   /* node should be left of root */
       if (rootNode->left == NULL) { /* There is no left child */
         setNodeAsLeft(rootNode, node);
-        printf("Add  %s  <- [%s%s%s]\n", node->str, CYAN, rootNode->str, DEFAULT);
+        if(DEBUG) printf("Add  %s  <- [%s%s%s]\n", node->str, CYAN, rootNode->str, DEFAULT);
       } else {  /* search for left edge */
         addNode(rootNode->left, node);
       }
     } else {    /* root <= node */
       if (rootNode->right == NULL) { /* There is no right child */
         setNodeAsRight(rootNode, node);
-        printf("Add [%s%s%s] ->  %s\n", CYAN, rootNode->str, DEFAULT, node->str);
+        if(DEBUG) printf("Add [%s%s%s] ->  %s\n", CYAN, rootNode->str, DEFAULT, node->str);
       } else {  /* search for left edge */
         addNode(rootNode->right, node);
       }

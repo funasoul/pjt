@@ -1,5 +1,5 @@
 /*
- * Last modified: Sun, 07 Apr 2013 18:40:07 +0900
+ * Last modified: Sun, 07 Apr 2013 19:08:32 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -45,7 +45,7 @@ void doNode(BinSTreeNode* node, myArgs *args) {
     if (args->str != NULL) {
       if (mystrcmp(node->str, args->str) < 0) {  /* XXX have to be consistent with isLeft() */
         args->result = false;
-        printf("HIT: [%p][%s]\n", node, node->str);
+        if(DEBUG) printf("Unsorted: [%p][%s]\n", node, node->str);
         args->unsortedNodes[args->count] = node;
         args->count++;
       }

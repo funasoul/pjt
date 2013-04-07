@@ -1,5 +1,5 @@
 /*
- * Last modified: Sun, 07 Apr 2013 12:22:48 +0900
+ * Last modified: Sun, 07 Apr 2013 19:10:46 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -16,7 +16,7 @@ BinSTreeNode* readNode(FILE *fp, BinSTreeNode *root) {
       if (*head != '\0') {
         if (root == NULL) {
           root = createNode(head);
-          printf("Add [%s%s%s] (root)\n", CYAN, root->str, DEFAULT);
+          if(DEBUG) printf("Add [%s%s%s] (root)\n", CYAN, root->str, DEFAULT);
         } else {
           addNode(root, createNode(head));
         }

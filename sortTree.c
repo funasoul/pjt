@@ -1,5 +1,5 @@
 /*
- * Last modified: Sun, 07 Apr 2013 17:44:43 +0900
+ * Last modified: Sun, 07 Apr 2013 19:06:30 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -19,10 +19,10 @@ void sortBinSTree(BinSTreeNode* rootNode) {
       break;
     }
     /* there exists unsorted nodes */
-    printf("DEBUG: unsorted nodes = %d\n", args->count);
+    if(DEBUG) printf("Unsorted nodes = %d\n", args->count);
     for (i = 0; i < args->count; i++) {
       node = args->unsortedNodes[i];
-      printf("Re-sort: [%p] %s\n", node, node->str);
+      if(DEBUG) printf("Re-sort: [%p] %s\n", node, node->str);
       newnode = createNode(node->str);
       /* remove unsorted node and sort tree */
       removeSort(node);

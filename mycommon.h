@@ -5,6 +5,8 @@
 #define false 0
 #define true 1
 
+#define DEBUG 0
+
 #define PREORDER 0
 #define INORDER 1
 #define POSTORDER 2
