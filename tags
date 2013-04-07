@@ -12,8 +12,10 @@ CFLAGS	Makefile	/^CFLAGS = -Wall -O0 -g$/;"	m
 CHECK	mycommon.h	/^#define CHECK /;"	d
 COUNT	mycommon.h	/^#define COUNT /;"	d
 CYAN	mycommon.h	/^#define CYAN /;"	d
+DEBUG	mycommon.h	/^#define DEBUG /;"	d
 DEBUG_PRINT	mycommon.h	/^#define DEBUG_PRINT /;"	d
 DEFAULT	mycommon.h	/^#define DEFAULT /;"	d
+DOT_PATH	mycommon.h	/^#define DOT_PATH /;"	d
 FONT_DEFAULT	mycommon.h	/^#define FONT_DEFAULT /;"	d
 GRAPH_PRINT	mycommon.h	/^#define GRAPH_PRINT /;"	d
 GREEN	mycommon.h	/^#define GREEN /;"	d
@@ -21,7 +23,7 @@ INORDER	mycommon.h	/^#define INORDER /;"	d
 INORDER_U	mycommon.h	/^#define INORDER_U /;"	d
 LDFLAGS	Makefile	/^LDFLAGS = -lm$/;"	m
 MAGENTA	mycommon.h	/^#define MAGENTA /;"	d
-OBJSCOMMON	Makefile	/^OBJSCOMMON  = unique.o ismynumber.o usage.o myOption.o findSpace.o chomp.o readNode.o option.o visualizeGraph.o myArgs.o myfree.o sortTree.o removeNode.o substString.o isChild.o isLeft.o getNodeNum.o checkSorted.o clearBinSTree.o doNode.o searchNode.o traverseTree.o printTree.o deleteNode.o setNode.o addNode.o createNode.o mystrcmp.o mystrcpy.o mystrlen.o mystrncmp.o mystrsubst.o$/;"	m
+OBJSCOMMON	Makefile	/^OBJSCOMMON  = formatOutput.o mystrcontain.o removeSort.o unique.o ismynumber.o usage.o myOption.o findSpace.o chomp.o readNode.o option.o visualizeGraph.o myArgs.o myfree.o sortTree.o removeNode.o substString.o isChild.o isLeft.o getNodeNum.o checkSorted.o clearBinSTree.o doNode.o searchNode.o traverseTree.o printTree.o deleteNode.o setNode.o addNode.o createNode.o mystrcmp.o mystrcpy.o mystrlen.o mystrncmp.o mystrsubst.o$/;"	m
 OBJSM	Makefile	/^OBJSM = $(OBJSCOMMON) main.o$/;"	m
 OBJST	Makefile	/^OBJST = $(OBJSCOMMON) test.o$/;"	m
 POSTORDER	mycommon.h	/^#define POSTORDER /;"	d
@@ -64,6 +66,7 @@ do_remove	mycommon.h	/^  int do_remove;$/;"	m	struct:_myOption
 do_subst	mycommon.h	/^  int do_subst;$/;"	m	struct:_myOption
 false	mycommon.h	/^#define false /;"	d
 findSpace	findSpace.c	/^char* findSpace(char *name) {$/;"	f
+formatOutput	formatOutput.c	/^char* formatOutput(char* pbuf, char* obuf) {$/;"	f
 fp	mycommon.h	/^  FILE* fp;$/;"	m	struct:_myArgs
 free_myArgs	myfree.c	/^void free_myArgs(myArgs* args) {$/;"	f
 free_myObjects	myfree.c	/^void free_myObjects(BinSTreeNode* root, myOption* opt) {$/;"	f
@@ -75,11 +78,13 @@ getMinNode	searchNode.c	/^BinSTreeNode* getMinNode(BinSTreeNode* root) {$/;"	f
 getNodeNum	getNodeNum.c	/^int getNodeNum(BinSTreeNode* root) {$/;"	f
 getSecondString	option.c	/^char* getSecondString(char* str) {$/;"	f
 getStringBetweenSlash	option.c	/^char* getStringBetweenSlash(char* str, int num) {$/;"	f
+hasGraphviz	visualizeGraph.c	/^int hasGraphviz(void) {$/;"	f
 inorder	traverseTree.c	/^BinSTreeNode* inorder(BinSTreeNode* node, myArgs* args) {$/;"	f
 isLeft	isLeft.c	/^int isLeft(BinSTreeNode *r, BinSTreeNode *n) {$/;"	f
 isLeftChild	isChild.c	/^int isLeftChild(BinSTreeNode *p, BinSTreeNode *n) {$/;"	f
 isRightChild	isChild.c	/^int isRightChild(BinSTreeNode *p, BinSTreeNode *n) {$/;"	f
 isUnique	unique.c	/^int isUnique(BinSTreeNode* node) {$/;"	f
+is_graphviz	mycommon.h	/^  int is_graphviz;$/;"	m	struct:_myOption
 is_help	mycommon.h	/^  int is_help;$/;"	m	struct:_myOption
 is_subst_first	mycommon.h	/^  int is_subst_first;$/;"	m	struct:_myOption
 is_unique	mycommon.h	/^  int is_unique;$/;"	m	struct:_myArgs
@@ -100,6 +105,7 @@ min	mystrcmp.c	/^int min(int a, int b) {$/;"	f
 myArgs	mycommon.h	/^} myArgs;$/;"	t	typeref:struct:_myArgs
 myOption	mycommon.h	/^} myOption;$/;"	t	typeref:struct:_myOption
 mystrcmp	mystrcmp.c	/^int mystrcmp(const char* s1, const char* s2) {$/;"	f
+mystrcontain	mystrcontain.c	/^char* mystrcontain(char* s, char* m) {$/;"	f
 mystrcpy	mystrcpy.c	/^char* mystrcpy(char* d, const char* s) {$/;"	f
 mystrlen	mystrlen.c	/^int mystrlen(const char* s) {$/;"	f
 mystrncmp	mystrncmp.c	/^int mystrncmp(const char *s1, const char *s2, int n) {$/;"	f
@@ -114,6 +120,7 @@ print_order	mycommon.h	/^  int print_order;$/;"	m	struct:_myOption
 print_test	test.c	/^void print_test(BinSTreeNode* r, char* ans1, char* ans2, char* ans3) {$/;"	f
 readNode	readNode.c	/^BinSTreeNode* readNode(FILE *fp, BinSTreeNode *root) {$/;"	f
 removeNode	removeNode.c	/^void removeNode(BinSTreeNode* root, const char* word, int delall) {$/;"	f
+removeSort	removeSort.c	/^void removeSort(BinSTreeNode* node) {$/;"	f
 remove_test	test.c	/^void remove_test(BinSTreeNode* r) {$/;"	f
 result	mycommon.h	/^  int result;$/;"	m	struct:_myArgs
 right	mycommon.h	/^  struct _BinSTreeNode* right;$/;"	m	struct:_BinSTreeNode	typeref:struct:_BinSTreeNode::_BinSTreeNode
