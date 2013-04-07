@@ -124,5 +124,7 @@ char* getStringBetweenSlash(char*, int);
 int ismynumber(char*);
 int isUnique(BinSTreeNode*);
 void removeSort(BinSTreeNode*);
+char* mystrcontain(char*, char*);
+char* formatOutput(char*, char*);
 
 #endif

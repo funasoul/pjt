@@ -1,5 +1,5 @@
 /*
- * Last modified: Sun, 07 Apr 2013 19:42:38 +0900
+ * Last modified: Sun, 07 Apr 2013 20:39:26 +0900
  */
 #include <stdio.h>
 #include <unistd.h>
@@ -100,10 +100,18 @@ int main2(int argc, char* argv[])
 
 int main(int argc, char** argv)
 {
+  FILE *pp;
   int ret = main2(argc, argv);
-  char buf[256];
-  sprintf(buf, "leaks %d | tail -1", getpid());
+  char buf[256], pbuf[256], obuf[256];
   /* sprintf(buf, "leaks %d", getpid()); */
-  system(buf);
+  sprintf(buf, "leaks %d | grep ' leaks for '", getpid());
+  /* system(buf); */
+  pp = popen(buf, "r");
+  fgets(pbuf, sizeof(pbuf), pp);
+  if (formatOutput(pbuf, obuf) != NULL) {
+    printf("%s\n", obuf);
+  } else {
+    printf("%s%s%s\n", RED, pbuf, DEFAULT);
+  }
   return ret;
 }
