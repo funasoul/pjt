@@ -9,8 +9,7 @@
 
 # Output files
 out.dot
-out.pdf
-out2.pdf
+*.pdf
 
 # Binary files
 test
