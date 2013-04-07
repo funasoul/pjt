@@ -1,5 +1,5 @@
 /*
- * Last modified: Sat, 06 Apr 2013 06:42:49 +0900
+ * Last modified: Sun, 07 Apr 2013 12:08:56 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -12,15 +12,17 @@
  * check sorted        if action == CHECK
  * count node num      if action == COUNT
  * subst string        if action == SUBST
- * sort tree           if action == SORT
  * remove matched node if action == REMOVE_MATCH
+ * sort tree           if action == SORT (not used)
  */
 void doNode(BinSTreeNode* node, myArgs *args) {
   char* s;
   BinSTreeNode *child = NULL, *parent = NULL, *left = NULL, *right = NULL;
   BinSTreeNode *min = NULL, *minRight = NULL;
   if (args->action == PRINT) {
-    printf("%s ", node->str);
+    if (!args->is_unique || isUnique(node)) {
+      printf("%s ", node->str);
+    }
   } else if (args->action == GRAPH_PRINT) {
     fprintf(args->fp, "  node%p[label=%s];\n", node, node->str);
     if (node->left != NULL) {

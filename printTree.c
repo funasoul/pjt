@@ -1,5 +1,5 @@
 /*
- * Last modified: Fri, 22 Mar 2013 03:02:42 +0900
+ * Last modified: Sun, 07 Apr 2013 11:53:07 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -7,6 +7,12 @@
 void printTree(BinSTreeNode *rootNode, int order) {
   myArgs args;
   args.action = PRINT;
+  if (order >= UNIQUE_OFFSET) {
+    args.is_unique = true;
+    order -= UNIQUE_OFFSET;
+  } else {
+    args.is_unique = false;
+  }
   switch(order) {
     case PREORDER:  /* 前順走査 (preorder) */
       preorder(rootNode, &args);
@@ -29,6 +35,7 @@ void printTree(BinSTreeNode *rootNode, int order) {
 void debug_printTree(BinSTreeNode *rootNode, int order) {
   myArgs args;
   args.action = DEBUG_PRINT;
+  args.is_unique = false;
   switch(order) {
     case PREORDER:  /* 前順走査 (preorder) */
       preorder(rootNode, &args);

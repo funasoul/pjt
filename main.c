@@ -1,5 +1,5 @@
 /*
- * Last modified: Sat, 06 Apr 2013 06:07:12 +0900
+ * Last modified: Sun, 07 Apr 2013 12:26:30 +0900
  */
 #include <stdio.h>
 #include <unistd.h>
@@ -23,6 +23,7 @@ int main2(int argc, char* argv[])
   /* Create tree from input */
   argv += argc - rest_args;
   if (rest_args == 0) {  /* read from command line */
+    printf("Please input node name, and end with [EOF].\n");
     fp = stdin;
     r = readNode(fp, r);
   } else {               /* read from files */
@@ -41,6 +42,10 @@ int main2(int argc, char* argv[])
   if (opt->is_verbose) {
     printTree(r, opt->print_order);
     visualizeGraph(r, "start.pdf", opt);
+  }
+  /* is unique print */
+  if (opt->is_unique) {
+    opt->print_order += UNIQUE_OFFSET;
   }
   /* SubstString and Remove */
   if (opt->is_subst_first) {    /* do_subst == true && do_remove == true */
@@ -61,7 +66,9 @@ int main2(int argc, char* argv[])
   }
   /* Print Tree */
   printTree(r, opt->print_order);
-  visualizeGraph(r, "end.pdf", opt);
+  if (opt->is_verbose) {
+    visualizeGraph(r, "end.pdf", opt);
+  }
   free_myObjects(r, opt);
 
   return 0;

@@ -8,6 +8,10 @@
 #define PREORDER 0
 #define INORDER 1
 #define POSTORDER 2
+#define UNIQUE_OFFSET 10
+#define PREORDER_U  (PREORDER  + UNIQUE_OFFSET)
+#define INORDER_U   (INORDER   + UNIQUE_OFFSET)
+#define POSTORDER_U (POSTORDER + UNIQUE_OFFSET)
 
 #define PRINT 20
 #define GRAPH_PRINT 21
@@ -50,10 +54,11 @@ typedef struct _myArgs {
   int delall;
   int num_removed;
   int result;
-  BinSTreeNode** unsortedNodes;
   int unsort_len;
   int count;
+  int is_unique;
   FILE* fp;
+  BinSTreeNode** unsortedNodes;
 } myArgs;
 
 typedef struct _myOption {
@@ -115,5 +120,6 @@ char* getFirstString(char*);
 char* getSecondString(char*);
 char* getStringBetweenSlash(char*, int);
 int ismynumber(char*);
+int isUnique(BinSTreeNode*);
 
 #endif
