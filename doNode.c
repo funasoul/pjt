@@ -1,5 +1,5 @@
 /*
- * Last modified: Sun, 07 Apr 2013 18:00:59 +0900
+ * Last modified: Sun, 07 Apr 2013 18:40:07 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -28,14 +28,14 @@ void doNode(BinSTreeNode* node, myArgs *args) {
     if (node->left != NULL) {
       fprintf(args->fp, "  node%p -> node%p;\n", node, node->left);
     } else {
-      fprintf(args->fp, "  null%p[shape=point];\n", (node+101));
-      fprintf(args->fp, "  node%p -> null%p;\n", node, (node+101));
+      fprintf(args->fp, "  nulll%p[shape=point];\n", (node+101));
+      fprintf(args->fp, "  node%p -> nulll%p;\n", node, (node+101));
     }
     if (node->right != NULL) {
       fprintf(args->fp, "  node%p -> node%p;\n", node, node->right);
     } else {
-      fprintf(args->fp, "  null%p[shape=point];\n", (node+102));
-      fprintf(args->fp, "  node%p -> null%p;\n", node, (node+102));
+      fprintf(args->fp, "  nullr%p[shape=point];\n", (node+102));
+      fprintf(args->fp, "  node%p -> nullr%p;\n", node, (node+102));
     }
   } else if (args->action == DEBUG_PRINT) {
     printf("[%-10s][%p][%p][%p]:[%p]\n", node->str, node, node->left, node->right, node->str);
@@ -43,7 +43,7 @@ void doNode(BinSTreeNode* node, myArgs *args) {
     deleteNode(node);
   } else if (args->action == CHECK) {
     if (args->str != NULL) {
-      if (mystrcmp(node->str, args->str) < 0) {
+      if (mystrcmp(node->str, args->str) < 0) {  /* XXX have to be consistent with isLeft() */
         args->result = false;
         printf("HIT: [%p][%s]\n", node, node->str);
         args->unsortedNodes[args->count] = node;

@@ -1,5 +1,5 @@
 /*
- * Last modified: Sun, 07 Apr 2013 12:26:30 +0900
+ * Last modified: Sun, 07 Apr 2013 18:48:30 +0900
  */
 #include <stdio.h>
 #include <unistd.h>
@@ -50,19 +50,18 @@ int main2(int argc, char* argv[])
   /* SubstString and Remove */
   if (opt->is_subst_first) {    /* do_subst == true && do_remove == true */
     substString(r, opt->sub_match, opt->sub_replace);
-    opt->do_subst = false;
     if (opt->is_verbose) printTree(r, opt->print_order);
     removeNode(r, opt->rm_match, opt->rm_delall);
-    opt->do_remove = false;
     if (opt->is_verbose) printTree(r, opt->print_order);
-  } else if (opt->do_remove) {
-    removeNode(r, opt->rm_match, opt->rm_delall);
-    opt->do_remove = false;
-    if (opt->is_verbose) printTree(r, opt->print_order);
-  } else if (opt->do_subst) {
-    substString(r, opt->sub_match, opt->sub_replace);
-    opt->do_subst = false;
-    if (opt->is_verbose) printTree(r, opt->print_order);
+  } else {
+    if (opt->do_remove) {
+      removeNode(r, opt->rm_match, opt->rm_delall);
+      if (opt->is_verbose) printTree(r, opt->print_order);
+    }
+    if (opt->do_subst) {
+      substString(r, opt->sub_match, opt->sub_replace);
+      if (opt->is_verbose) printTree(r, opt->print_order);
+    }
   }
   /* Print Tree */
   printTree(r, opt->print_order);
