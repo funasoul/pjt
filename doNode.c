@@ -1,5 +1,5 @@
 /*
- * Last modified: Sun, 07 Apr 2013 12:08:56 +0900
+ * Last modified: Sun, 07 Apr 2013 16:46:15 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -77,7 +77,7 @@ void doNode(BinSTreeNode* node, myArgs *args) {
           printf("Found [%s][%p][%p] (root node)\n", node->str, node->left, node->right);
           parent = node;       /* set parent as "node" for addNode() */
           free(node->str);
-          node->str = NULL;    /* just set nodeName as NULL */
+          node->str = NULL;    /* just set nodeName as NULL. addNode() will take care of it. */
         } else {
           printf("Found [%s][%p][%p] <- [%s]\n", node->str, node->left, node->right, node->parent->str);
           deleteNode(node);
