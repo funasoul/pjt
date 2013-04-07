@@ -1,14 +1,23 @@
 /*
- * Last modified: Sun, 07 Apr 2013 18:00:46 +0900
+ * Last modified: Sun, 07 Apr 2013 20:56:49 +0900
  */
 #include <stdio.h>
+#include <unistd.h>
 #include "mycommon.h"
+
+int hasGraphviz(void) {
+  if (access(DOT_PATH, R_OK | X_OK) != 0) return false;
+  return true;
+}
 
 int visualizeGraph(BinSTreeNode* root, const char* file, myOption* opt) {
   myArgs args;
   FILE *fp;
   char command[256];
 
+  if (!opt->is_graphviz) { /* Don't have Graphviz */
+    return true;
+  }
   if (root->str == NULL) { /* take care of empty root node */
     return true;
   }
@@ -23,7 +32,7 @@ int visualizeGraph(BinSTreeNode* root, const char* file, myOption* opt) {
   fprintf(fp, "}\n");
   fclose(fp);
 
-  sprintf(command, "/opt/local/bin/dot -Tpdf out.dot -o %s && open %s", file, file);
+  sprintf(command, "%s -Tpdf out.dot -o %s && open -g %s", DOT_PATH, file, file);
   system(command);
   if (opt->is_verbose) {
     printf("Visualize graph in %s\n", file);

@@ -1,5 +1,5 @@
 /*
- * Last modified: Sun, 07 Apr 2013 19:10:06 +0900
+ * Last modified: Sun, 07 Apr 2013 21:02:05 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -61,6 +61,10 @@ int parseOption(int argc, char* argv[], myOption *opt) {
     } else if (!mystrcmp(*argv, "-v")) { /* verbose */
       argv++; argc--;
       opt->is_verbose = true;
+      opt->is_graphviz = hasGraphviz();
+      if (!opt->is_graphviz) {
+        fprintf(stderr, "If you want to visualize PJT, please install graphviz from MacPorts.\n(sudo port install graphviz)\n");
+      }
     } else if (!mystrcmp(*argv, "-h")) { /* help */
       argv++; argc--;
       opt->is_help = true;

@@ -36,6 +36,8 @@
 #define BOLD          "\x1b[1m"
 #define FONT_DEFAULT "\x1b[0m"
 
+#define DOT_PATH "/opt/local/bin/dots"
+
 int mystrlen(const char*);
 char* mystrcpy(char*, const char*);
 int mystrcmp(const char*, const char*);
@@ -75,6 +77,7 @@ typedef struct _myOption {
   int is_verbose;
   int is_subst_first;
   int is_help;
+  int is_graphviz;
 } myOption;
 
 BinSTreeNode* createNode(const char *);
@@ -126,5 +129,6 @@ int isUnique(BinSTreeNode*);
 void removeSort(BinSTreeNode*);
 char* mystrcontain(char*, char*);
 char* formatOutput(char*, char*);
+int hasGraphviz(void);
 
 #endif
