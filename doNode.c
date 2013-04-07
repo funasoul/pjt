@@ -1,5 +1,5 @@
 /*
- * Last modified: Sun, 07 Apr 2013 17:28:13 +0900
+ * Last modified: Sun, 07 Apr 2013 18:00:59 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -19,7 +19,9 @@ void doNode(BinSTreeNode* node, myArgs *args) {
   char* s;
   if (args->action == PRINT) {
     if (!args->is_unique || isUnique(node)) {
-      printf("%s ", node->str);
+      if (node->str != NULL) {
+        printf("%s ", node->str);
+      }
     }
   } else if (args->action == GRAPH_PRINT) {
     fprintf(args->fp, "  node%p[label=%s];\n", node, node->str);
