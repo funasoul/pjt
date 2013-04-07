@@ -1,5 +1,5 @@
 /*
- * Last modified: Sun, 07 Apr 2013 11:53:07 +0900
+ * Last modified: Sun, 07 Apr 2013 19:42:04 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -61,9 +61,9 @@ void checkPrint(BinSTreeNode* root) {
   args = create_myArgs_forCheck(root);
   rtn = checkSortedWithArgs(root, args);
   if (rtn) {
-    printf("%s%sSorted!%s%s\n", UNDER_LINE, GREEN, DEFAULT, FONT_DEFAULT);
+    printf("[%s%s Sorted! %s%s] ", UNDER_LINE, GREEN, DEFAULT, FONT_DEFAULT);
   } else {
-    printf("%s%sUnsorted.%s%s BottomCoder!\n", UNDER_LINE, RED, DEFAULT, FONT_DEFAULT);
+    printf("[%s%sUnsorted.%s%s] ", UNDER_LINE, RED, DEFAULT, FONT_DEFAULT);
   }
   free_myArgs(args);
 }
