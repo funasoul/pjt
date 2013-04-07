@@ -121,5 +121,6 @@ char* getSecondString(char*);
 char* getStringBetweenSlash(char*, int);
 int ismynumber(char*);
 int isUnique(BinSTreeNode*);
+void removeSort(BinSTreeNode*);
 
 #endif
