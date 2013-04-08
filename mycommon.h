@@ -24,6 +24,8 @@
 #define SUBST 26
 #define REMOVE_MATCH 27
 #define SORT 28
+#define START 29
+#define END 30
 
 #define RED     "\x1b[31m"
 #define GREEN   "\x1b[32m"
@@ -130,5 +132,6 @@ void removeSort(BinSTreeNode*);
 char* mystrcontain(char*, char*);
 char* formatOutput(char*, char*);
 int hasGraphviz(void);
+void verbosePrint(BinSTreeNode*, myOption*, int);
 
 #endif

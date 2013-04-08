@@ -1,5 +1,5 @@
 /*
- * Last modified: Mon, 08 Apr 2013 19:25:52 +0900
+ * Last modified: Mon, 08 Apr 2013 19:38:11 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -59,13 +59,40 @@ void debug_printTree(BinSTreeNode *rootNode, int order) {
   return;
 }
 
-void verbosePrint(BinSTreeNode* r, myOption* opt, char* msg) {
-  if (opt->is_verbose) {
-    printf("== Remove =======================\n");
+void verbosePrint(BinSTreeNode* r, myOption* opt, int mode) {
+  char msg[256];
+  char filename[256];
+  switch(mode) {
+    case START:
+    mystrcpy(msg, "== Start =========================");
+    mystrcpy(filename, "start.pdf");
+    break;
+    case END:
+    mystrcpy(msg, "== End ===========================");
+    mystrcpy(filename, "end.pdf");
+    break;
+    case REMOVE_MATCH:
+    mystrcpy(msg, "== Remove ========================");
+    mystrcpy(filename, "remove.pdf");
+    break;
+    case SUBST:
+    mystrcpy(msg, "== Subst =========================");
+    mystrcpy(filename, "subst.pdf");
+    break;
+    default:
+    mystrcpy(msg, "== Unknown =======================");
+    mystrcpy(filename, "unknown.pdf");
+    break;
+  }
+  if (opt->is_verbose || mode == START || mode == END) {
+    printf("%s\n", msg);
     checkPrint(r);
     printTree(r, opt->print_order);
-    visualizeGraph(r, "remove.pdf", opt);
+    if (opt->is_verbose) {
+      visualizeGraph(r, filename, opt);
+    }
   }
+  return;
 }
 
 void checkPrint(BinSTreeNode* root) {

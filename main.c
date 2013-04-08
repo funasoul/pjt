@@ -1,5 +1,5 @@
 /*
- * Last modified: Sun, 07 Apr 2013 20:39:26 +0900
+ * Last modified: Mon, 08 Apr 2013 19:42:40 +0900
  */
 #include <stdio.h>
 #include <unistd.h>
@@ -39,12 +39,7 @@ int main2(int argc, char* argv[])
     }
   }
   /* Here we go! */
-  printf("== Start ========================\n");
-  checkPrint(r);
-  printTree(r, opt->print_order);
-  if (opt->is_verbose) {
-    visualizeGraph(r, "start.pdf", opt);
-  }
+  verbosePrint(r, opt, START);
   /* is unique print */
   if (opt->is_unique) {
     opt->print_order += UNIQUE_OFFSET;
@@ -52,47 +47,23 @@ int main2(int argc, char* argv[])
   /* SubstString and Remove */
   if (opt->is_subst_first) {    /* do_subst == true && do_remove == true */
     substString(r, opt->sub_match, opt->sub_replace);
-    if (opt->is_verbose) {
-      printf("== Subst ========================\n");
-      checkPrint(r);
-      printTree(r, opt->print_order);
-      visualizeGraph(r, "subst.pdf", opt);
-    }
+    verbosePrint(r, opt, SUBST);
     removeNode(r, opt->rm_match, opt->rm_delall);
     if (opt->is_verbose) {
-      printf("== Remove =======================\n");
-      checkPrint(r);
-      printTree(r, opt->print_order);
-      visualizeGraph(r, "remove.pdf", opt);
+      verbosePrint(r, opt, REMOVE_MATCH);
     }
   } else {
     if (opt->do_remove) {
       removeNode(r, opt->rm_match, opt->rm_delall);
-      if (opt->is_verbose) {
-        printf("== Remove =======================\n");
-        checkPrint(r);
-        printTree(r, opt->print_order);
-        visualizeGraph(r, "remove.pdf", opt);
-      }
+      verbosePrint(r, opt, REMOVE_MATCH);
     }
     if (opt->do_subst) {
       substString(r, opt->sub_match, opt->sub_replace);
-      if (opt->is_verbose) {
-        printf("== Subst ========================\n");
-        checkPrint(r);
-        printTree(r, opt->print_order);
-        visualizeGraph(r, "subst.pdf", opt);
-      }
-      /* if (opt->is_verbose) printTree(r, opt->print_order); */
+      verbosePrint(r, opt, SUBST);
     }
   }
   /* Print Tree */
-  printf("== End ==========================\n");
-  checkPrint(r);
-  printTree(r, opt->print_order);
-  if (opt->is_verbose) {
-    visualizeGraph(r, "end.pdf", opt);
-  }
+  verbosePrint(r, opt, END);
   free_myObjects(r, opt);
 
   return 0;

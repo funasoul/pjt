@@ -16,6 +16,7 @@ DEBUG	mycommon.h	/^#define DEBUG /;"	d
 DEBUG_PRINT	mycommon.h	/^#define DEBUG_PRINT /;"	d
 DEFAULT	mycommon.h	/^#define DEFAULT /;"	d
 DOT_PATH	mycommon.h	/^#define DOT_PATH /;"	d
+END	mycommon.h	/^#define END /;"	d
 FONT_DEFAULT	mycommon.h	/^#define FONT_DEFAULT /;"	d
 GRAPH_PRINT	mycommon.h	/^#define GRAPH_PRINT /;"	d
 GREEN	mycommon.h	/^#define GREEN /;"	d
@@ -38,6 +39,7 @@ REMOVE_MATCH	mycommon.h	/^#define REMOVE_MATCH /;"	d
 SIZE	test.c	/^#define SIZE /;"	d	file:
 SIZE	test0.c	/^#define SIZE /;"	d	file:
 SORT	mycommon.h	/^#define SORT /;"	d
+START	mycommon.h	/^#define START /;"	d
 SUBST	mycommon.h	/^#define SUBST /;"	d
 TEST	Makefile	/^TEST = test$/;"	m
 UNDER_LINE	mycommon.h	/^#define UNDER_LINE /;"	d
@@ -142,5 +144,5 @@ unlinkParent	setNode.c	/^void unlinkParent(BinSTreeNode *node) {$/;"	f
 unsort_len	mycommon.h	/^  int unsort_len;$/;"	m	struct:_myArgs
 unsortedNodes	mycommon.h	/^  BinSTreeNode** unsortedNodes;$/;"	m	struct:_myArgs
 usage	usage.c	/^void usage(char *myname) {$/;"	f
-verbosePrint	printTree.c	/^void verbosePrint(BinSTreeNode* r, myOption* opt, char* msg) {$/;"	f
+verbosePrint	printTree.c	/^void verbosePrint(BinSTreeNode* r, myOption* opt, int mode) {$/;"	f
 visualizeGraph	visualizeGraph.c	/^int visualizeGraph(BinSTreeNode* root, const char* file, myOption* opt) {$/;"	f
