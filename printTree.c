@@ -1,5 +1,5 @@
 /*
- * Last modified: Mon, 08 Apr 2013 19:38:11 +0900
+ * Last modified: Mon, 08 Apr 2013 21:47:56 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -73,11 +73,13 @@ void verbosePrint(BinSTreeNode* r, myOption* opt, int mode) {
     break;
     case REMOVE_MATCH:
     mystrcpy(msg, "== Remove ========================");
-    mystrcpy(filename, "remove.pdf");
+    sprintf(filename, "%s%d.pdf", "remove", opt->count_remove);
+    opt->count_remove++;
     break;
     case SUBST:
     mystrcpy(msg, "== Subst =========================");
-    mystrcpy(filename, "subst.pdf");
+    sprintf(filename, "%s%d.pdf", "subst", opt->count_subst);
+    opt->count_subst++;
     break;
     default:
     mystrcpy(msg, "== Unknown =======================");

@@ -80,6 +80,8 @@ typedef struct _myOption {
   int is_subst_first;
   int is_help;
   int is_graphviz;
+  int count_subst;
+  int count_remove;
   struct _myOption* next;
 } myOption;
 

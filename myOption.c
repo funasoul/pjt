@@ -1,5 +1,5 @@
 /*
- * Last modified: Mon, 08 Apr 2013 21:17:01 +0900
+ * Last modified: Mon, 08 Apr 2013 21:48:54 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -18,6 +18,8 @@ myOption* create_myOption(void) {
   opt->is_subst_first = false;
   opt->is_help = false;
   opt->is_graphviz = false;
+  opt->count_subst = 0;
+  opt->count_remove = 0;
   opt->next = NULL;
   return opt;
 }
