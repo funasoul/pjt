@@ -1,5 +1,5 @@
 /*
- * Last modified: Mon, 08 Apr 2013 19:42:40 +0900
+ * Last modified: Mon, 08 Apr 2013 21:33:05 +0900
  */
 #include <stdio.h>
 #include <unistd.h>
@@ -12,6 +12,7 @@ int main2(int argc, char* argv[])
   char *myname = argv[0];
   BinSTreeNode *r = NULL;
   myOption *opt = create_myOption();
+  myOption *opt_head = opt;
 
   /* Option handling */
   rest_args = parseOption(--argc, ++argv, opt);
@@ -39,32 +40,25 @@ int main2(int argc, char* argv[])
     }
   }
   /* Here we go! */
-  verbosePrint(r, opt, START);
+  verbosePrint(r, opt_head, START);
   /* is unique print */
-  if (opt->is_unique) {
-    opt->print_order += UNIQUE_OFFSET;
+  if (opt_head->is_unique) {
+    opt_head->print_order += UNIQUE_OFFSET;
   }
-  /* SubstString and Remove */
-  if (opt->is_subst_first) {    /* do_subst == true && do_remove == true */
-    substString(r, opt->sub_match, opt->sub_replace);
-    verbosePrint(r, opt, SUBST);
-    removeNode(r, opt->rm_match, opt->rm_delall);
-    if (opt->is_verbose) {
-      verbosePrint(r, opt, REMOVE_MATCH);
-    }
-  } else {
-    if (opt->do_remove) {
-      removeNode(r, opt->rm_match, opt->rm_delall);
-      verbosePrint(r, opt, REMOVE_MATCH);
-    }
+  /* get option from queue and execute */
+  while (opt != NULL) {
     if (opt->do_subst) {
       substString(r, opt->sub_match, opt->sub_replace);
-      verbosePrint(r, opt, SUBST);
+      verbosePrint(r, opt_head, SUBST);
+    } else if (opt->do_remove) {
+      removeNode(r, opt->rm_match, opt->rm_delall);
+      verbosePrint(r, opt_head, REMOVE_MATCH);
     }
+    opt = opt->next;
   }
   /* Print Tree */
-  verbosePrint(r, opt, END);
-  free_myObjects(r, opt);
+  verbosePrint(r, opt_head, END);
+  free_myObjects(r, opt_head);
 
   return 0;
 }
@@ -74,9 +68,11 @@ int main(int argc, char** argv)
   FILE *pp;
   int ret = main2(argc, argv);
   char buf[256], pbuf[256], obuf[256];
-  /* sprintf(buf, "leaks %d", getpid()); */
+  /*
+  sprintf(buf, "leaks %d", getpid());
+  system(buf);
+  */
   sprintf(buf, "leaks %d | grep ' leaks for '", getpid());
-  /* system(buf); */
   pp = popen(buf, "r");
   fgets(pbuf, sizeof(pbuf), pp);
   if (formatOutput(pbuf, obuf) != NULL) {

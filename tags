@@ -42,97 +42,19 @@ int ismynumber(char* s) {ismynumber8,118
 
 main.c,91
 int main2(int argc, char* argv[])main28,119
-int main(int argc, char** argv)main72,1806
-
-Makefile,648
-PROG = pjtPROG1,0
-TEST = testTEST2,11
-OBJSCOMMON  = formatOutput.o mystrcontain.o removeSort.o unique.o ismynumber.o usage.o myOption.o findSpace.o chomp.o readNode.o option.o visualizeGraph.o myArgs.o myfree.o sortTree.o removeNode.o substString.o isChild.o isLeft.o getNodeNum.o checkSorted.o clearBinSTree.o doNode.o searchNode.o traverseTree.o printTree.o deleteNode.o setNode.o addNode.o createNode.o mystrcmp.o mystrcpy.o mystrlen.o mystrncmp.o mystrsubst.oOBJSCOMMON3,23
-OBJST = $(OBJSCOMMON) test.oOBJST4,449
-OBJSM = $(OBJSCOMMON) main.oOBJSM5,478
-CC = gccCC6,507
-CFLAGS = -Wall -O0 -gCFLAGS8,569
-LDFLAGS = -lmLDFLAGS10,644
+int main(int argc, char** argv)main66,1627
 
 myArgs.c,81
 myArgs* create_myArgs_forCheck(BinSTreeNode* root) {create_myArgs_forCheck7,99
 
-mycommon.h,2253
-#define __mycommon____mycommon__2,21
-#define false false5,63
-#define true true6,79
-#define DEBUG DEBUG8,95
-#define PREORDER PREORDER10,112
-#define INORDER INORDER11,131
-#define POSTORDER POSTORDER12,149
-#define UNIQUE_OFFSET UNIQUE_OFFSET13,169
-#define PREORDER_U PREORDER_U14,194
-#define INORDER_U INORDER_U15,242
-#define POSTORDER_U POSTORDER_U16,290
-#define PRINT PRINT18,339
-#define GRAPH_PRINT GRAPH_PRINT19,356
-#define DEBUG_PRINT DEBUG_PRINT20,379
-#define REMOVE REMOVE21,402
-#define CHECK CHECK22,420
-#define COUNT COUNT23,437
-#define SUBST SUBST24,454
-#define REMOVE_MATCH REMOVE_MATCH25,471
-#define SORT SORT26,495
-#define START START27,511
-#define END END28,528
-#define RED RED30,544
-#define GREEN GREEN31,571
-#define YELLOW YELLOW32,598
-#define BLUE BLUE33,625
-#define MAGENTA MAGENTA34,652
-#define CYAN CYAN35,679
-#define DEFAULT DEFAULT36,706
-#define UNDER_LINE UNDER_LINE37,733
-#define BOLD BOLD38,765
-#define FONT_DEFAULT FONT_DEFAULT39,797
-#define DOT_PATH DOT_PATH41,829
-typedef struct _BinSTreeNode {_BinSTreeNode49,1075
-  char* str;str50,1106
-  struct _BinSTreeNode* left;left51,1119
-  struct _BinSTreeNode* right;right52,1149
-  struct _BinSTreeNode* parent;parent53,1180
-} BinSTreeNode;BinSTreeNode54,1212
-typedef struct _myArgs {_myArgs56,1229
-  int action;action57,1254
-  const char* str;str58,1268
-  const char* rstr;rstr59,1287
-  int delall;delall60,1307
-  int num_removed;num_removed61,1321
-  int result;result62,1340
-  int unsort_len;unsort_len63,1354
-  int count;count64,1372
-  int is_unique;is_unique65,1385
-  FILE* fp;fp66,1402
-  BinSTreeNode** unsortedNodes;unsortedNodes67,1414
-} myArgs;myArgs68,1446
-typedef struct _myOption {_myOption70,1457
-  int print_order;print_order71,1484
-  int do_subst;do_subst72,1503
-  char* sub_match;sub_match73,1519
-  char* sub_replace;sub_replace74,1538
-  int do_remove;do_remove75,1559
-  char* rm_match;rm_match76,1576
-  int rm_delall;rm_delall77,1594
-  int is_unique;is_unique78,1611
-  int is_verbose;is_verbose79,1628
-  int is_subst_first;is_subst_first80,1646
-  int is_help;is_help81,1668
-  int is_graphviz;is_graphviz82,1683
-} myOption;myOption83,1702
+myOption.c,112
+myOption* create_myOption(void) {create_myOption7,99
+void free_myOption(myOption* opt) {free_myOption25,548
 
 myfree.c,195
 void free_myArgs(myArgs* args) {free_myArgs7,99
 void free_unsortedNodes(myArgs* args) {free_unsortedNodes12,177
 void free_myObjects(BinSTreeNode* root, myOption* opt) {free_myObjects22,349
-
-myOption.c,113
-myOption* create_myOption(void) {create_myOption7,99
- void free_myOption(myOption* opt) {free_myOption24,528
 
 mystrcmp.c,97
 int mystrcmp(const char* s1, const char* s2) {mystrcmp9,119
@@ -153,11 +75,11 @@ int mystrncmp(const char *s1, const char *s2, int n) {mystrncmp7,99
 mystrsubst.c,85
 char* mystrsubst(const char* word, const char* s1, const char* s2) {mystrsubst7,99
 
-option.c,272
-int parseOption(int argc, char* argv[], myOption *opt) {parseOption7,99
-char* getStringBetweenSlash(char* str, int num) {getStringBetweenSlash79,2560
-char* getFirstString(char* str) {getFirstString103,3118
-char* getSecondString(char* str) {getSecondString107,3195
+option.c,277
+int parseOption(int argc, char* argv[], myOption *opt_head) {parseOption7,99
+char* getStringBetweenSlash(char* str, int num) {getStringBetweenSlash97,2900
+char* getFirstString(char* str) {getFirstString121,3458
+char* getSecondString(char* str) {getSecondString125,3535
 
 printTree.c,288
 void printTree(BinSTreeNode *rootNode, int order) {printTree7,99
@@ -224,3 +146,72 @@ void usage(char *myname) {usage6,77
 visualizeGraph.c,138
 int hasGraphviz(void) {hasGraphviz8,119
 int visualizeGraph(BinSTreeNode* root, const char* file, myOption* opt) {visualizeGraph13,217
+
+mycommon.h,2292
+#define __mycommon____mycommon__2,21
+#define false false5,63
+#define true true6,79
+#define DEBUG DEBUG8,95
+#define PREORDER PREORDER10,112
+#define INORDER INORDER11,131
+#define POSTORDER POSTORDER12,149
+#define UNIQUE_OFFSET UNIQUE_OFFSET13,169
+#define PREORDER_U PREORDER_U14,194
+#define INORDER_U INORDER_U15,242
+#define POSTORDER_U POSTORDER_U16,290
+#define PRINT PRINT18,339
+#define GRAPH_PRINT GRAPH_PRINT19,356
+#define DEBUG_PRINT DEBUG_PRINT20,379
+#define REMOVE REMOVE21,402
+#define CHECK CHECK22,420
+#define COUNT COUNT23,437
+#define SUBST SUBST24,454
+#define REMOVE_MATCH REMOVE_MATCH25,471
+#define SORT SORT26,495
+#define START START27,511
+#define END END28,528
+#define RED RED30,544
+#define GREEN GREEN31,571
+#define YELLOW YELLOW32,598
+#define BLUE BLUE33,625
+#define MAGENTA MAGENTA34,652
+#define CYAN CYAN35,679
+#define DEFAULT DEFAULT36,706
+#define UNDER_LINE UNDER_LINE37,733
+#define BOLD BOLD38,765
+#define FONT_DEFAULT FONT_DEFAULT39,797
+#define DOT_PATH DOT_PATH41,829
+typedef struct _BinSTreeNode {_BinSTreeNode49,1075
+  char* str;str50,1106
+  struct _BinSTreeNode* left;left51,1119
+  struct _BinSTreeNode* right;right52,1149
+  struct _BinSTreeNode* parent;parent53,1180
+} BinSTreeNode;BinSTreeNode54,1212
+typedef struct _myArgs {_myArgs56,1229
+  int action;action57,1254
+  const char* str;str58,1268
+  const char* rstr;rstr59,1287
+  int delall;delall60,1307
+  int num_removed;num_removed61,1321
+  int result;result62,1340
+  int unsort_len;unsort_len63,1354
+  int count;count64,1372
+  int is_unique;is_unique65,1385
+  FILE* fp;fp66,1402
+  BinSTreeNode** unsortedNodes;unsortedNodes67,1414
+} myArgs;myArgs68,1446
+typedef struct _myOption {_myOption70,1457
+  int print_order;print_order71,1484
+  int do_subst;do_subst72,1503
+  char* sub_match;sub_match73,1519
+  char* sub_replace;sub_replace74,1538
+  int do_remove;do_remove75,1559
+  char* rm_match;rm_match76,1576
+  int rm_delall;rm_delall77,1594
+  int is_unique;is_unique78,1611
+  int is_verbose;is_verbose79,1628
+  int is_subst_first;is_subst_first80,1646
+  int is_help;is_help81,1668
+  int is_graphviz;is_graphviz82,1683
+  struct _myOption* next;next83,1702
+} myOption;myOption84,1728

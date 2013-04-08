@@ -1,11 +1,13 @@
 /*
- * Last modified: Mon, 08 Apr 2013 19:22:41 +0900
+ * Last modified: Mon, 08 Apr 2013 21:31:27 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
 
 void removeNode(BinSTreeNode* root, const char* word, int delall) {
-  printf("%s%sRemoving%s%s [%s]\n", YELLOW, UNDER_LINE, FONT_DEFAULT, DEFAULT, word);
+  int flag;
+  flag = 
+  printf("%s%sRemoving%s%s [%s][%d]\n", YELLOW, UNDER_LINE, FONT_DEFAULT, DEFAULT, word, (delall != 0) ? true : false);
   myArgs args;
   args.action = REMOVE_MATCH;
   args.result = 0;

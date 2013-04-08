@@ -1,11 +1,12 @@
 /*
- * Last modified: Sun, 07 Apr 2013 21:02:05 +0900
+ * Last modified: Mon, 08 Apr 2013 20:33:07 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
 
-int parseOption(int argc, char* argv[], myOption *opt) {
+int parseOption(int argc, char* argv[], myOption *opt_head) {
   char* tmpstr;
+  myOption* opt = opt_head;
   while (*argv != NULL && **argv == '-') {
     if (!mystrcmp(*argv, "-p")) {  /* print */
       argv++; argc--;
@@ -18,22 +19,30 @@ int parseOption(int argc, char* argv[], myOption *opt) {
           return -1;
         } else {
           opt->print_order = atoi(*argv);
-          argv++; argc--;
+          opt->next = create_myOption();
+          opt = opt->next;
         }
       }
-    } else if (!mystrcmp(*argv, "-s")) { /* substr */
+      argv++; argc--;
+      continue;
+    }
+    if (!mystrcmp(*argv, "-s")) { /* substr */
       argv++; argc--;
       opt->do_subst = true;
       opt->sub_match = getFirstString(*argv);
       opt->sub_replace = getSecondString(*argv);
       if (opt->sub_match != NULL && opt->sub_replace != NULL) {
         if(DEBUG) printf("  -s [%s][%s]\n", opt->sub_match, opt->sub_replace);
-        argv++; argc--;
+        opt->next = create_myOption();
+        opt = opt->next;
       } else {
         fprintf(stderr, "\"-s\" option requires \"/match/replace/\" as an argument.\n");
         return -1;
       }
-    } else if (!mystrcmp(*argv, "-r")) { /* remove */
+      argv++; argc--;
+      continue;
+    } 
+    if (!mystrcmp(*argv, "-r")) { /* remove */
       argv++; argc--;
       opt->do_remove = true;
       if (opt->do_subst) {
@@ -49,25 +58,34 @@ int parseOption(int argc, char* argv[], myOption *opt) {
         }
         free(tmpstr);
         if(DEBUG) printf("  -r [%s][%d]\n", opt->rm_match, opt->rm_delall);
-        argv++; argc--;
+        opt->next = create_myOption();
+        opt = opt->next;
       } else {
         free(tmpstr);
         fprintf(stderr, "\"-r\" option requires \"/match/dellall_flag/\" as an argument.\n");
         return -1;
       }
-    } else if (!mystrcmp(*argv, "-u")) { /* unique */
       argv++; argc--;
-      opt->is_unique = true;
-    } else if (!mystrcmp(*argv, "-v")) { /* verbose */
+      continue;
+    }
+    if (!mystrcmp(*argv, "-u")) { /* unique */
       argv++; argc--;
-      opt->is_verbose = true;
-      opt->is_graphviz = hasGraphviz();
-      if (!opt->is_graphviz) {
+      opt_head->is_unique = true;
+      continue;
+    } 
+    if (!mystrcmp(*argv, "-v")) { /* verbose */
+      argv++; argc--;
+      opt_head->is_verbose = true;
+      opt_head->is_graphviz = hasGraphviz();
+      if (!opt_head->is_graphviz) {
         fprintf(stderr, "If you want to visualize PJT, please install graphviz from MacPorts.\n(sudo port install graphviz)\n");
       }
-    } else if (!mystrcmp(*argv, "-h")) { /* help */
+      continue;
+    } 
+    if (!mystrcmp(*argv, "-h")) { /* help */
       argv++; argc--;
-      opt->is_help = true;
+      opt_head->is_help = true;
+      continue;
     } else {
       fprintf(stderr, "Unknown option \"%s\"\n", *argv);
       return -1;

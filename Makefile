@@ -26,3 +26,7 @@ $(TEST): $(OBJST)
 .PHONY: clean
 clean: 
 	rm -f $(PROG) $(TEST) $(OBJS) $(OBJST)
+
+.PHONY: tags
+tags: 
+	ctags -Re *.c *.h
