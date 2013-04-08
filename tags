@@ -142,4 +142,5 @@ unlinkParent	setNode.c	/^void unlinkParent(BinSTreeNode *node) {$/;"	f
 unsort_len	mycommon.h	/^  int unsort_len;$/;"	m	struct:_myArgs
 unsortedNodes	mycommon.h	/^  BinSTreeNode** unsortedNodes;$/;"	m	struct:_myArgs
 usage	usage.c	/^void usage(char *myname) {$/;"	f
+verbosePrint	printTree.c	/^void verbosePrint(BinSTreeNode* r, myOption* opt, char* msg) {$/;"	f
 visualizeGraph	visualizeGraph.c	/^int visualizeGraph(BinSTreeNode* root, const char* file, myOption* opt) {$/;"	f

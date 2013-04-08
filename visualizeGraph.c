@@ -1,5 +1,5 @@
 /*
- * Last modified: Sun, 07 Apr 2013 20:56:49 +0900
+ * Last modified: Mon, 08 Apr 2013 19:22:25 +0900
  */
 #include <stdio.h>
 #include <unistd.h>
@@ -18,7 +18,7 @@ int visualizeGraph(BinSTreeNode* root, const char* file, myOption* opt) {
   if (!opt->is_graphviz) { /* Don't have Graphviz */
     return true;
   }
-  if (root->str == NULL) { /* take care of empty root node */
+  if (root == NULL || root->str == NULL) { /* take care of empty root node */
     return true;
   }
   fp = fopen("out.dot", "w");

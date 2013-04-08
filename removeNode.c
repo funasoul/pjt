@@ -1,5 +1,5 @@
 /*
- * Last modified: Sun, 07 Apr 2013 19:36:08 +0900
+ * Last modified: Mon, 08 Apr 2013 19:22:41 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
@@ -12,6 +12,7 @@ void removeNode(BinSTreeNode* root, const char* word, int delall) {
   args.str = word;
   args.delall = delall;
   args.num_removed = 0;
+  if (root == NULL) return;
   /* Should have to be postorder (won't work with preorder, inorder). */
   postorder(root, &args);
   return;

@@ -1,12 +1,13 @@
 /*
- * Last modified: Sun, 07 Apr 2013 15:05:30 +0900
+ * Last modified: Mon, 08 Apr 2013 19:18:36 +0900
  */
 #include <stdio.h>
 #include "mycommon.h"
 
 myArgs* create_myArgs_forCheck(BinSTreeNode* root) {
   int i;
-  myArgs* args = (myArgs*)malloc(sizeof(myArgs) * 1);
+  myArgs* args;
+  args = (myArgs*)malloc(sizeof(myArgs) * 1);
   args->action = CHECK;
   args->str = NULL;
   args->rstr = NULL;
