@@ -36,7 +36,7 @@
 #define BOLD          "\x1b[1m"
 #define FONT_DEFAULT "\x1b[0m"
 
-#define DOT_PATH "/opt/local/bin/dots"
+#define DOT_PATH "/opt/local/bin/dot"
 
 int mystrlen(const char*);
 char* mystrcpy(char*, const char*);
