@@ -49,7 +49,7 @@ myArgs* create_myArgs_forCheck(BinSTreeNode* root) {create_myArgs_forCheck7,99
 
 myOption.c,112
 myOption* create_myOption(void) {create_myOption7,99
-void free_myOption(myOption* opt) {free_myOption25,548
+void free_myOption(myOption* opt) {free_myOption27,597
 
 myfree.c,195
 void free_myArgs(myArgs* args) {free_myArgs7,99
@@ -81,11 +81,11 @@ char* getStringBetweenSlash(char* str, int num) {getStringBetweenSlash97,2900
 char* getFirstString(char* str) {getFirstString121,3458
 char* getSecondString(char* str) {getSecondString125,3535
 
-printTree.c,288
+printTree.c,289
 void printTree(BinSTreeNode *rootNode, int order) {printTree7,99
 void debug_printTree(BinSTreeNode *rootNode, int order) {debug_printTree39,788
 void verbosePrint(BinSTreeNode* r, myOption* opt, int mode) {verbosePrint62,1325
-void checkPrint(BinSTreeNode* root) {checkPrint98,2282
+void checkPrint(BinSTreeNode* root) {checkPrint100,2382
 
 readNode.c,69
 BinSTreeNode* readNode(FILE *fp, BinSTreeNode *root) {readNode7,99
@@ -147,7 +147,7 @@ visualizeGraph.c,138
 int hasGraphviz(void) {hasGraphviz8,119
 int visualizeGraph(BinSTreeNode* root, const char* file, myOption* opt) {visualizeGraph13,217
 
-mycommon.h,2292
+mycommon.h,2372
 #define __mycommon____mycommon__2,21
 #define false false5,63
 #define true true6,79
@@ -213,5 +213,7 @@ typedef struct _myOption {_myOption70,1457
   int is_subst_first;is_subst_first80,1646
   int is_help;is_help81,1668
   int is_graphviz;is_graphviz82,1683
-  struct _myOption* next;next83,1702
-} myOption;myOption84,1728
+  int count_subst;count_subst83,1702
+  int count_remove;count_remove84,1721
+  struct _myOption* next;next85,1741
+} myOption;myOption86,1767
