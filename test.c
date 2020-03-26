@@ -1,5 +1,5 @@
 /*
- * Last modified: Fri, 05 Apr 2013 09:03:19 +0900
+ * Last modified: Thu, 26 Mar 2020 22:33:31 +0900
  */
 #include <stdio.h>
 #include <unistd.h>
@@ -57,8 +57,9 @@ int main2(int argc, char* argv[])
   /* char ans2[] = "akira banana blue cat cow dog donna fool ponta"; */
   BinSTreeNode* node[SIZE];
   BinSTreeNode *r;
+  myOption *opt = create_myOption();
   for (i = 0; i < SIZE; i++) {
-    node[i] = createNode(tst[i]); 
+    node[i] = createNode(tst[i]);
     if (i == 0) {
       r = node[0];
     } else {
@@ -68,9 +69,9 @@ int main2(int argc, char* argv[])
   debug_printTree(r, PREORDER);
   print_test(r, ans1, ans2, ans3);
   subst_test(r);
-  visualizeGraph(r, "out.pdf");
+  visualizeGraph(r, "out.pdf", opt);
   remove_test(r);
-  visualizeGraph(r, "out2.pdf");
+  visualizeGraph(r, "out2.pdf", opt);
   clearBinSTree(r);
 
   return 0;
